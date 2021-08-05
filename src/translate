@@ -1,0 +1,27 @@
+#! /home/mskdl6/python-projects/translate/venv/bin/python
+
+from textblob import TextBlob
+import sys
+import clipboard
+
+def translating(word):
+    try:
+        blob = TextBlob(word)
+        translation = blob.translate(to='es')
+        clipboard.copy(str(translation))
+        print(translation)
+    except Exception as e:
+        print(e)
+
+if __name__ == "__main__":
+
+    i=1
+    word = ""
+    for i in range(len(sys.argv)):
+        if i > 1:
+            word = word + " " + sys.argv[i]
+        elif i == 1:
+            word = sys.argv[i]
+        i=i+1
+
+    translating(word)
